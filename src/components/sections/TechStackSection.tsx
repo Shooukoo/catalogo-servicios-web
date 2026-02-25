@@ -8,7 +8,7 @@ export default function TechStackSection() {
     return (
         <section
             id="stack"
-            className="relative py-24"
+            className="relative min-h-screen flex flex-col justify-center py-24"
             aria-labelledby="stack-heading"
         >
             {/* Background accent */}

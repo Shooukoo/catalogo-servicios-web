@@ -13,12 +13,11 @@ export interface TechIcon {
     icon: string;
 }
 
-// With basePath="/catalogo", Next.js serves /public files at /catalogo/<file>
-// on the app's own domain. So NEXT_PUBLIC_ASSET_URL must include /catalogo:
-//   e.g. https://catalogo-servicios-web.vercel.app/catalogo
-// When empty, falls back to "" so <img src="/icons/..."> resolves via the
-// /catalogo proxy rewrite on the main domain (uningenieromas.vercel.app).
-const ASSET = (process.env.NEXT_PUBLIC_ASSET_URL ?? "").replace(/\/$/, "");
+// With basePath="/catalogo", Next.js serves /public files at /catalogo/<file>.
+// NEXT_PUBLIC_ASSET_URL must include the basePath suffix:
+//   Production → https://catalogo-servicios-web.vercel.app/catalogo
+//   Local dev  → leave empty (falls back to "/catalogo" here)
+const ASSET = (process.env.NEXT_PUBLIC_ASSET_URL ?? "/catalogo").replace(/\/$/, "");
 
 export const techIcons: TechIcon[] = [
     // ── Web basics ──────────────────────────────

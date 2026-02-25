@@ -29,7 +29,7 @@ export default function ContactSection() {
     return (
         <section
             id="contacto"
-            className="relative py-24 px-6"
+            className="relative min-h-screen flex flex-col justify-center py-24 px-6"
             aria-labelledby="contact-heading"
         >
             {/* Glow */}

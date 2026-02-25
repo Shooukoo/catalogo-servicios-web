@@ -63,7 +63,7 @@ export default function ServicesSection() {
     return (
         <section
             id="servicios"
-            className="relative py-24 px-6"
+            className="relative min-h-screen flex flex-col justify-center py-24 px-6"
             aria-labelledby="services-heading"
         >
             {/* Background glow */}

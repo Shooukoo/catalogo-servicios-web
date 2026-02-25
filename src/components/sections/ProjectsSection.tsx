@@ -8,7 +8,7 @@ export default function ProjectsSection() {
     return (
         <section
             id="proyectos"
-            className="relative py-24 px-6"
+            className="relative min-h-screen flex flex-col justify-center py-24 px-6"
             aria-labelledby="projects-heading"
         >
             <div className="max-w-6xl mx-auto">
