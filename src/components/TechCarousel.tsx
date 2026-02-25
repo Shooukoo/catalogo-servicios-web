@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useWindowSize } from "@/lib/useWindowSize";
 
 /* ─────────────────────────────────────────────
    Tech icon metadata — all icons served from /public/icons/
@@ -56,9 +57,11 @@ interface CarouselRowProps {
     icons: TechIcon[];
     reverse?: boolean;
     speed?: number; // seconds per full cycle
+    cardSize?: number;
+    iconSize?: number;
 }
 
-function CarouselRow({ icons, reverse = false, speed = 40 }: CarouselRowProps) {
+function CarouselRow({ icons, reverse = false, speed = 40, cardSize = 132, iconSize = 44 }: CarouselRowProps) {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
     // 4 copies → animate -25% (= 1 copy width) → seamless at any screen size
@@ -91,8 +94,8 @@ function CarouselRow({ icons, reverse = false, speed = 40 }: CarouselRowProps) {
                             title={tech.name}
                             className="flex flex-col items-center justify-center gap-2 rounded-2xl border cursor-default select-none flex-shrink-0 transition-all duration-300 text-center"
                             style={{
-                                width: 132,
-                                height: 132,
+                                width: cardSize,
+                                height: cardSize,
                                 borderColor: isHovered
                                     ? `${tech.color}55`
                                     : "rgba(255,255,255,0.07)",
@@ -110,8 +113,8 @@ function CarouselRow({ icons, reverse = false, speed = 40 }: CarouselRowProps) {
                             {/* Icon */}
                             <div
                                 style={{
-                                    width: 44,
-                                    height: 44,
+                                    width: iconSize,
+                                    height: iconSize,
                                     transition: "filter 0.3s ease",
                                     filter: isHovered
                                         ? "grayscale(0) brightness(1)"
@@ -142,15 +145,25 @@ function CarouselRow({ icons, reverse = false, speed = 40 }: CarouselRowProps) {
 }
 
 /* ─────────────────────────────────────────────
-   Main export — two rows, second reversed
+   Main export — two rows on desktop, one on mobile
 ───────────────────────────────────────────── */
 export default function TechCarousel() {
+    const { isMobile } = useWindowSize();
     const row2 = [...techIcons].reverse();
+
+    // Smaller cards on mobile to reduce visual clutter and animation cost
+    const cardSize = isMobile ? 88 : 132;
+    const iconSize = isMobile ? 30 : 44;
+    const speed1 = isMobile ? 28 : 42;
+    const speed2 = isMobile ? 24 : 36;
 
     return (
         <div className="flex flex-col gap-3">
-            <CarouselRow icons={techIcons} speed={42} />
-            <CarouselRow icons={row2} reverse speed={36} />
+            <CarouselRow icons={techIcons} speed={speed1} cardSize={cardSize} iconSize={iconSize} />
+            {/* Only render the second row on tablet/desktop */}
+            {!isMobile && (
+                <CarouselRow icons={row2} reverse speed={speed2} cardSize={cardSize} iconSize={iconSize} />
+            )}
         </div>
     );
 }

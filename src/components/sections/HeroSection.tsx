@@ -33,13 +33,13 @@ export default function HeroSection() {
     return (
         <section
             id="inicio"
-            className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6"
+            className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6"
             aria-label="Sección principal"
         >
             {/* Background glow orbs */}
             <div
                 aria-hidden="true"
-                className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full pointer-events-none"
+                className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[700px] sm:h-[700px] rounded-full pointer-events-none"
                 style={{
                     background:
                         "radial-gradient(circle, rgba(168,85,247,0.12) 0%, transparent 70%)",
@@ -47,7 +47,7 @@ export default function HeroSection() {
             />
             <div
                 aria-hidden="true"
-                className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full pointer-events-none"
+                className="absolute bottom-1/4 right-1/4 w-[200px] h-[200px] sm:w-[400px] sm:h-[400px] rounded-full pointer-events-none"
                 style={{
                     background:
                         "radial-gradient(circle, rgba(124,58,237,0.08) 0%, transparent 70%)",
@@ -98,7 +98,8 @@ export default function HeroSection() {
                 {/* Main heading */}
                 <motion.h1
                     variants={itemVariants}
-                    className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight text-white leading-[1.05] mb-6"
+                    className="font-black tracking-tight text-white leading-[1.08] mb-5"
+                    style={{ fontSize: "clamp(1.75rem, 6vw, 5rem)" }}
                 >
                     Transformo ideas en{" "}
                     <span className="gradient-text">experiencias digitales</span> de alto
@@ -108,7 +109,8 @@ export default function HeroSection() {
                 {/* Subtitle */}
                 <motion.p
                     variants={itemVariants}
-                    className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed"
+                    className="text-gray-400 max-w-2xl mx-auto mb-8 leading-relaxed"
+                    style={{ fontSize: "clamp(0.9rem, 2vw, 1.25rem)" }}
                 >
                     Ingeniero en Sistemas con enfoque en arquitectura de software, rendimiento
                     web y soluciones escalables. Construyo productos que importan.
@@ -117,11 +119,11 @@ export default function HeroSection() {
                 {/* CTAs */}
                 <motion.div
                     variants={itemVariants}
-                    className="flex flex-wrap items-center justify-center gap-4 mb-14"
+                    className="flex flex-wrap items-center justify-center gap-3 mb-10"
                 >
                     <a
                         href="#proyectos"
-                        className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-bold text-white transition-all duration-200 hover:-translate-y-1 hover:shadow-2xl"
+                        className="inline-flex items-center gap-2 px-7 py-3.5 min-h-[44px] rounded-xl text-sm font-bold text-white transition-all duration-200 hover:-translate-y-1 hover:shadow-2xl"
                         style={{
                             background: "linear-gradient(135deg, var(--accent), var(--accent-dark))",
                             boxShadow: "0 0 30px var(--accent-glow)",
@@ -131,7 +133,7 @@ export default function HeroSection() {
                     </a>
                     <a
                         href="#contacto"
-                        className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-bold text-gray-300 border border-white/10 hover:border-white/20 hover:text-white transition-all duration-200 hover:-translate-y-1"
+                        className="inline-flex items-center gap-2 px-7 py-3.5 min-h-[44px] rounded-xl text-sm font-bold text-gray-300 border border-white/10 hover:border-white/20 hover:text-white transition-all duration-200 hover:-translate-y-1"
                         style={{ background: "rgba(255,255,255,0.03)" }}
                     >
                         Conversemos

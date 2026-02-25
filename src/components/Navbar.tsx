@@ -34,7 +34,7 @@ export default function Navbar() {
             )}
         >
             <nav
-                className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between"
+                className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between"
                 role="navigation"
                 aria-label="Navegación principal"
             >
@@ -65,7 +65,7 @@ export default function Navbar() {
                 {/* CTA — desktop */}
                 <a
                     href="#contacto"
-                    className="hidden md:inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-lg border transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
+                    className="hidden md:inline-flex items-center gap-2 px-4 py-2 min-h-[44px] text-sm font-semibold rounded-lg border transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
                     style={{
                         borderColor: "var(--accent)",
                         color: "var(--accent)",
@@ -84,7 +84,7 @@ export default function Navbar() {
                 {/* Mobile toggle */}
                 <button
                     onClick={() => setIsOpen(!isOpen)}
-                    className="md:hidden text-gray-400 hover:text-white transition-colors"
+                    className="md:hidden flex items-center justify-center w-11 h-11 text-gray-400 hover:text-white transition-colors rounded-lg"
                     aria-label="Abrir menú"
                 >
                     {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -107,7 +107,7 @@ export default function Navbar() {
                     <a
                         href="#contacto"
                         onClick={() => setIsOpen(false)}
-                        className="mt-2 flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold border"
+                        className="mt-2 flex items-center justify-center gap-2 px-4 py-3 min-h-[44px] rounded-lg text-sm font-semibold border"
                         style={{
                             borderColor: "var(--accent)",
                             color: "var(--accent)",

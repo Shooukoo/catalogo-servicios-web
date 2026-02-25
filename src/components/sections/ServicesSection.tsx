@@ -63,7 +63,7 @@ export default function ServicesSection() {
     return (
         <section
             id="servicios"
-            className="relative min-h-screen flex flex-col justify-center py-24 px-6"
+            className="section-full relative flex flex-col justify-center py-16 md:py-24 px-4 sm:px-6"
             aria-labelledby="services-heading"
         >
             {/* Background glow */}
@@ -97,7 +97,8 @@ export default function ServicesSection() {
                     </span>
                     <h2
                         id="services-heading"
-                        className="text-4xl md:text-5xl font-black text-white tracking-tight"
+                        className="font-black text-white tracking-tight"
+                        style={{ fontSize: "clamp(1.5rem, 4vw, 3rem)" }}
                     >
                         ¿En qué te{" "}
                         <span className="gradient-text">puedo ayudar?</span>
@@ -109,7 +110,7 @@ export default function ServicesSection() {
                 </motion.div>
 
                 {/* Cards grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {services.map((svc, i) => (
                         <motion.div
                             key={svc.name}

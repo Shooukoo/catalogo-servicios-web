@@ -29,7 +29,7 @@ export default function ContactSection() {
     return (
         <section
             id="contacto"
-            className="relative min-h-screen flex flex-col justify-center py-24 px-6"
+            className="section-full relative flex flex-col justify-center py-16 md:py-24 px-4 sm:px-6"
             aria-labelledby="contact-heading"
         >
             {/* Glow */}
@@ -63,7 +63,8 @@ export default function ContactSection() {
                     </span>
                     <h2
                         id="contact-heading"
-                        className="text-4xl md:text-5xl font-black text-white tracking-tight"
+                        className="font-black text-white tracking-tight"
+                        style={{ fontSize: "clamp(1.5rem, 4vw, 3rem)" }}
                     >
                         ¿Tienes un{" "}
                         <span className="gradient-text">proyecto en mente?</span>

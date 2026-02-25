@@ -8,7 +8,7 @@ export default function TechStackSection() {
     return (
         <section
             id="stack"
-            className="relative min-h-screen flex flex-col justify-center py-24"
+            className="section-full relative flex flex-col justify-center py-16 md:py-24"
             aria-labelledby="stack-heading"
         >
             {/* Background accent */}
@@ -42,7 +42,8 @@ export default function TechStackSection() {
                     </span>
                     <h2
                         id="stack-heading"
-                        className="text-4xl md:text-5xl font-black text-white tracking-tight"
+                        className="font-black text-white tracking-tight"
+                        style={{ fontSize: "clamp(1.5rem, 4vw, 3rem)" }}
                     >
                         Tecnologías que{" "}
                         <span className="gradient-text">domino y uso</span>
@@ -83,7 +84,7 @@ export default function TechStackSection() {
                     >
                         Arquitectura & Metodologías
                     </span>
-                    <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight">
+                    <h2 className="font-black text-white tracking-tight" style={{ fontSize: "clamp(1.5rem, 4vw, 3rem)" }}>
                         Cómo pienso y{" "}
                         <span className="gradient-text">estructuro</span>
                     </h2>

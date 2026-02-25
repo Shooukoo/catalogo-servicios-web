@@ -23,7 +23,7 @@
 /* ─── Base Styles ────────────────────────────────────────── */
 html {
   scroll-behavior: smooth;
-  scrollbar-gutter: stable;
+  overflow-x: hidden; /* prevent horizontal scroll on mobile */
 }
 
 body {
@@ -32,6 +32,7 @@ body {
   font-family: "Inter", system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden; /* belt-and-suspenders: catch any rogue wide element */
 }
 
 /* ─── Noise Overlay ──────────────────────────────────────── */
@@ -139,4 +140,9 @@ body::before {
   border: 1px solid var(--border);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+}
+
+/* ─── Full-screen sections (mobile-safe) ─────── */
+.section-full {
+  min-height: 100dvh; /* dvh = visible area minus browser chrome */
 }
