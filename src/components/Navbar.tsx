@@ -39,7 +39,7 @@ export default function Navbar() {
                 aria-label="Navegación principal"
             >
                 {/* Logo */}
-                <a href="#" className="text-xl font-bold tracking-tight select-none" aria-label="Kevin Mora — Inicio">
+                <a href="https://uningenieromas.vercel.app" className="text-xl font-bold tracking-tight select-none" aria-label=".uningenieromás — Inicio">
                     <span style={{ color: "var(--accent)" }}>.</span>
                     <span className="text-white">uningenieromás</span>
                 </a>
