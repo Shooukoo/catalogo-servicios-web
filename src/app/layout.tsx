@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
+const outfit = localFont({
+  src: "../fonts/OutfitThin-ExtraBold.woff2",
+  variable: "--font-outfit",
   display: "swap",
 });
 
@@ -78,7 +78,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={inter.variable}>
+    <html lang="es" className={outfit.variable}>
       <body className="antialiased relative">
         {children}
       </body>
