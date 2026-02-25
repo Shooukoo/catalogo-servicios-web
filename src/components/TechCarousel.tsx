@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 
 /* ─────────────────────────────────────────────
    Tech icon metadata — all icons served from /public/icons/
@@ -113,11 +112,10 @@ function CarouselRow({ icons, reverse = false, speed = 40 }: CarouselRowProps) {
                                         : "grayscale(1) brightness(0.55)",
                                 }}
                             >
-                                <Image
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img
                                     src={tech.icon}
                                     alt={tech.name}
-                                    width={44}
-                                    height={44}
                                     style={{ objectFit: "contain", width: "100%", height: "100%" }}
                                 />
                             </div>
