@@ -83,7 +83,7 @@ export default function ServicesSection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-80px" }}
                     transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] as const }}
-                    className="mb-16 text-center"
+                    className="mb-8 md:mb-14 text-center"
                 >
                     <span
                         className="inline-block mb-4 text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full border"

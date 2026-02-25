@@ -33,7 +33,7 @@ export default function HeroSection() {
     return (
         <section
             id="inicio"
-            className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6"
+            className="relative min-h-screen flex flex-col items-center justify-start pt-24 md:justify-center md:pt-0 overflow-hidden px-4 sm:px-6"
             aria-label="Sección principal"
         >
             {/* Background glow orbs */}
@@ -98,19 +98,18 @@ export default function HeroSection() {
                 {/* Main heading */}
                 <motion.h1
                     variants={itemVariants}
-                    className="font-black tracking-tight text-white leading-[1.08] mb-5"
-                    style={{ fontSize: "clamp(1.75rem, 6vw, 5rem)" }}
+                    className="font-black tracking-tight text-white leading-[1.1] mb-4"
+                    style={{ fontSize: "clamp(1.5rem, 5.5vw, 5rem)" }}
                 >
                     Transformo ideas en{" "}
-                    <span className="gradient-text">experiencias digitales</span> de alto
-                    rendimiento
+                    <span className="gradient-text">experiencias digitales</span>{" "}de alto rendimiento
                 </motion.h1>
 
                 {/* Subtitle */}
                 <motion.p
                     variants={itemVariants}
-                    className="text-gray-400 max-w-2xl mx-auto mb-8 leading-relaxed"
-                    style={{ fontSize: "clamp(0.9rem, 2vw, 1.25rem)" }}
+                    className="text-gray-400 max-w-2xl mx-auto mb-6 leading-relaxed"
+                    style={{ fontSize: "clamp(0.875rem, 2vw, 1.125rem)" }}
                 >
                     Ingeniero en Sistemas con enfoque en arquitectura de software, rendimiento
                     web y soluciones escalables. Construyo productos que importan.
@@ -119,7 +118,7 @@ export default function HeroSection() {
                 {/* CTAs */}
                 <motion.div
                     variants={itemVariants}
-                    className="flex flex-wrap items-center justify-center gap-3 mb-10"
+                    className="flex flex-wrap items-center justify-center gap-3 mb-8"
                 >
                     <a
                         href="#proyectos"
