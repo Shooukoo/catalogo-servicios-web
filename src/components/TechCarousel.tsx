@@ -13,13 +13,12 @@ export interface TechIcon {
     icon: string;
 }
 
-// basePath is "/catalogo" in next.config.ts, so all static files in /public
-// are served at /catalogo/<file>. We apply that prefix here for <img> tags
-// (native img doesn't pick up basePath automatically like Next's <Image>).
-// Override with NEXT_PUBLIC_ASSET_URL only if the assets are on a different origin.
-const ASSET =
-    process.env.NEXT_PUBLIC_ASSET_URL ??
-    (process.env.NEXT_PUBLIC_BASE_PATH || "/catalogo");
+// Native <img> tags don't inherit Next.js basePath automatically.
+// NEXT_PUBLIC_ASSET_URL should be set to the absolute URL of this
+// Vercel deployment (e.g. https://catalogo-servicios-web.vercel.app)
+// so SVGs load correctly both through the /catalogo proxy and directly.
+// Falls back to "/catalogo" (= basePath) when running locally.
+const ASSET = (process.env.NEXT_PUBLIC_ASSET_URL ?? "/catalogo").replace(/\/$/, "");
 
 export const techIcons: TechIcon[] = [
     // ── Web basics ──────────────────────────────
