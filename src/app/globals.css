@@ -87,15 +87,28 @@ body::before {
   animation-play-state: paused !important;
 }
 
+/* Subtler fade-up: 8px / 0.25s to avoid the heavy bounce feel */
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(24px);
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Simple opacity fade — for backdrops and overlays */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Mobile menu slide-in — defined globally to avoid CSS re-injection flicker */
+@keyframes mobileMenuIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes pulse-glow {
@@ -113,7 +126,15 @@ body::before {
 }
 
 .animate-fade-in-up {
-  animation: fadeInUp 0.5s ease-out both;
+  animation: fadeInUp 0.25s ease-out both;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.2s ease-out both;
+}
+
+.animate-mobile-menu-in {
+  animation: mobileMenuIn 0.18s ease-out both;
 }
 
 .animate-float {

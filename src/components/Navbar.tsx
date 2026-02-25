@@ -91,9 +91,9 @@ export default function Navbar() {
                 </button>
             </nav>
 
-            {/* Mobile menu */}
+            {/* Mobile menu — global CSS class avoids inline style re-injection flicker */}
             {isOpen && (
-                <div className="md:hidden border-t border-white/5 bg-[#09090b]/95 backdrop-blur-xl px-6 pb-4 pt-2 flex flex-col gap-1">
+                <div className="md:hidden border-t border-white/5 bg-[#09090b]/95 backdrop-blur-xl px-6 pb-4 pt-2 flex flex-col gap-1 animate-mobile-menu-in">
                     {NAV_LINKS.map((link) => (
                         <a
                             key={link.href}

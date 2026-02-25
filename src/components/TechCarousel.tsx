@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useWindowSize } from "@/lib/useWindowSize";
 
 /* ─────────────────────────────────────────────
@@ -149,6 +149,13 @@ function CarouselRow({ icons, reverse = false, speed = 40, cardSize = 132, iconS
 ───────────────────────────────────────────── */
 export default function TechCarousel() {
     const { isMobile } = useWindowSize();
+    const [mounted, setMounted] = useState(false);
+
+    // Wait for the first client render so useWindowSize knows the real viewport.
+    // Without this, isMobile starts as false, causing the second row to flash
+    // briefly on mobile before disappearing.
+    useEffect(() => { setMounted(true); }, []);
+
     const row2 = [...techIcons].reverse();
 
     // Smaller cards on mobile to reduce visual clutter and animation cost
@@ -156,6 +163,15 @@ export default function TechCarousel() {
     const iconSize = isMobile ? 30 : 44;
     const speed1 = isMobile ? 28 : 42;
     const speed2 = isMobile ? 24 : 36;
+
+    // Render a single row as a stable skeleton before mount to avoid CLS
+    if (!mounted) {
+        return (
+            <div className="flex flex-col gap-3">
+                <CarouselRow icons={techIcons} speed={42} cardSize={132} iconSize={44} />
+            </div>
+        );
+    }
 
     return (
         <div className="flex flex-col gap-3">
