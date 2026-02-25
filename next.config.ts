@@ -10,6 +10,14 @@ const nextConfig: NextConfig = {
   // Without this, the Vercel proxy catches the redirect and re-proxies it
   // creating an infinite redirect loop (ERR_TOO_MANY_REDIRECTS).
   trailingSlash: true,
+
+  // The Next.js image optimizer doesn't support SVG files — it returns an
+  // error for them. Setting unoptimized:true makes <Image> serve the file
+  // directly from /public (with the basePath prefix applied), which is
+  // exactly what we need for all the SVG tech icons.
+  images: {
+    unoptimized: true,
+  },
 };
 
 export default nextConfig;
