@@ -13,34 +13,42 @@ export interface TechIcon {
     icon: string;
 }
 
+// basePath is "/catalogo" in next.config.ts, so all static files in /public
+// are served at /catalogo/<file>. We apply that prefix here for <img> tags
+// (native img doesn't pick up basePath automatically like Next's <Image>).
+// Override with NEXT_PUBLIC_ASSET_URL only if the assets are on a different origin.
+const ASSET =
+    process.env.NEXT_PUBLIC_ASSET_URL ??
+    (process.env.NEXT_PUBLIC_BASE_PATH || "/catalogo");
+
 export const techIcons: TechIcon[] = [
     // ── Web basics ──────────────────────────────
-    { name: "HTML5", color: "#E34F26", icon: "/icons/html-5-svgrepo-com.svg" },
-    { name: "CSS3", color: "#1572B6", icon: "/icons/css-svgrepo-com.svg" },
-    { name: "JavaScript", color: "#F7DF1E", icon: "/icons/javascript-svgrepo-com.svg" },
+    { name: "HTML5", color: "#E34F26", icon: `${ASSET}/icons/html-5-svgrepo-com.svg` },
+    { name: "CSS3", color: "#1572B6", icon: `${ASSET}/icons/css-svgrepo-com.svg` },
+    { name: "JavaScript", color: "#F7DF1E", icon: `${ASSET}/icons/javascript-svgrepo-com.svg` },
     // ── Frontend ──────────────────────────────
-    { name: "TypeScript", color: "#3178C6", icon: "/icons/typescript-svgrepo-com.svg" },
-    { name: "React", color: "#61DAFB", icon: "/icons/react-svgrepo-com.svg" },
-    { name: "Next.js", color: "#e2e8f0", icon: "/icons/next-dot-js-svgrepo-com.svg" },
-    { name: "Tailwind CSS", color: "#06B6D4", icon: "/icons/tailwind-css-svgrepo-com.svg" },
+    { name: "TypeScript", color: "#3178C6", icon: `${ASSET}/icons/typescript-svgrepo-com.svg` },
+    { name: "React", color: "#61DAFB", icon: `${ASSET}/icons/react-svgrepo-com.svg` },
+    { name: "Next.js", color: "#e2e8f0", icon: `${ASSET}/icons/next-dot-js-svgrepo-com.svg` },
+    { name: "Tailwind CSS", color: "#06B6D4", icon: `${ASSET}/icons/tailwind-css-svgrepo-com.svg` },
     // ── Backend ──────────────────────────────
-    { name: "NestJS", color: "#E0234E", icon: "/icons/nestjs-svgrepo-com.svg" },
-    { name: "Node.js", color: "#339933", icon: "/icons/node-js-svgrepo-com.svg" },
-    { name: "Python", color: "#3776AB", icon: "/icons/python-svgrepo-com.svg" },
-    { name: "PHP", color: "#777BB4", icon: "/icons/php-svgrepo-com.svg" },
-    { name: "FastAPI", color: "#009688", icon: "/icons/fastapi-svgrepo-com.svg" },
+    { name: "NestJS", color: "#E0234E", icon: `${ASSET}/icons/nestjs-svgrepo-com.svg` },
+    { name: "Node.js", color: "#339933", icon: `${ASSET}/icons/node-js-svgrepo-com.svg` },
+    { name: "Python", color: "#3776AB", icon: `${ASSET}/icons/python-svgrepo-com.svg` },
+    { name: "PHP", color: "#777BB4", icon: `${ASSET}/icons/php-svgrepo-com.svg` },
+    { name: "FastAPI", color: "#009688", icon: `${ASSET}/icons/fastapi-svgrepo-com.svg` },
     // ── Databases ──────────────────────────────
-    { name: "PostgreSQL", color: "#4169E1", icon: "/icons/postgresql-svgrepo-com.svg" },
-    { name: "MySQL", color: "#4479A1", icon: "/icons/mysql-svgrepo-com.svg" },
-    { name: "MongoDB", color: "#47A248", icon: "/icons/mongo-svgrepo-com.svg" },
-    { name: "Prisma", color: "#818CF8", icon: "/icons/light-prisma-svgrepo-com.svg" },
+    { name: "PostgreSQL", color: "#4169E1", icon: `${ASSET}/icons/postgresql-svgrepo-com.svg` },
+    { name: "MySQL", color: "#4479A1", icon: `${ASSET}/icons/mysql-svgrepo-com.svg` },
+    { name: "MongoDB", color: "#47A248", icon: `${ASSET}/icons/mongo-svgrepo-com.svg` },
+    { name: "Prisma", color: "#818CF8", icon: `${ASSET}/icons/light-prisma-svgrepo-com.svg` },
     // ── DevOps & Tools ──────────────────────────────
-    { name: "Docker", color: "#2496ED", icon: "/icons/docker-svgrepo-com.svg" },
-    { name: "Git", color: "#F05032", icon: "/icons/git-svgrepo-com.svg" },
-    { name: "Vercel", color: "#e2e8f0", icon: "/icons/vercel-icon-svgrepo-com.svg" },
+    { name: "Docker", color: "#2496ED", icon: `${ASSET}/icons/docker-svgrepo-com.svg` },
+    { name: "Git", color: "#F05032", icon: `${ASSET}/icons/git-svgrepo-com.svg` },
+    { name: "Vercel", color: "#e2e8f0", icon: `${ASSET}/icons/vercel-icon-svgrepo-com.svg` },
     // ── AI & ML ──────────────────────────────
-    { name: "TensorFlow", color: "#FF6F00", icon: "/icons/tensorflow-svgrepo-com.svg" },
-    { name: "RabbitMQ", color: "#FF6600", icon: "/icons/rabbitmq-logo-svgrepo-com.svg" },
+    { name: "TensorFlow", color: "#FF6F00", icon: `${ASSET}/icons/tensorflow-svgrepo-com.svg` },
+    { name: "RabbitMQ", color: "#FF6600", icon: `${ASSET}/icons/rabbitmq-logo-svgrepo-com.svg` },
 ];
 
 /* ─────────────────────────────────────────────
