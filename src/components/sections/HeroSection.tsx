@@ -165,7 +165,7 @@ export default function HeroSection() {
 
             {/* Scroll indicator */}
             <motion.div
-                className="absolute bottom-14 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+                className="scroll-indicator absolute bottom-14 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.4, duration: 0.6 }}

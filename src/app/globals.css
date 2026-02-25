@@ -24,6 +24,7 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden; /* prevent horizontal scroll on mobile */
+  scroll-padding-top: 72px; /* offset for fixed navbar (h-16 = 64px) + a little breathing room */
 }
 
 body {
@@ -166,4 +167,11 @@ body::before {
 /* ─── Full-screen sections (mobile-safe) ─────── */
 .section-full {
   min-height: 100dvh; /* dvh = visible area minus browser chrome */
+}
+
+/* ─── Scroll indicator — push it higher on small phones ─── */
+@media (max-width: 640px) {
+  .scroll-indicator {
+    bottom: 5rem; /* ~80px from bottom on mobile */
+  }
 }
