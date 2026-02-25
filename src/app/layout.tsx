@@ -8,8 +8,8 @@ const inter = Inter({
   display: "swap",
 });
 
-// The portfolio lives at /portafolio on the main domain (served via rewrite)
-const BASE_URL = "https://uningenieromas.vercel.app/portafolio";
+// The portfolio lives at /catalogo on the main domain (served via rewrite)
+const BASE_URL = "https://uningenieromas.vercel.app/catalogo";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
