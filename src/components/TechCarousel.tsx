@@ -61,7 +61,16 @@ interface CarouselRowProps {
     iconSize?: number;
 }
 
-function CarouselRow({ icons, reverse = false, speed = 40, cardSize = 132, iconSize = 44 }: CarouselRowProps) {
+interface CarouselRowProps {
+    icons: TechIcon[];
+    reverse?: boolean;
+    speed?: number;
+    cardSize?: number;
+    iconSize?: number;
+    noHover?: boolean; // true on touch-only devices
+}
+
+function CarouselRow({ icons, reverse = false, speed = 40, cardSize = 132, iconSize = 44, noHover = false }: CarouselRowProps) {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
     // 4 copies → animate -25% (= 1 copy width) → seamless at any screen size
@@ -85,7 +94,8 @@ function CarouselRow({ icons, reverse = false, speed = 40, cardSize = 132, iconS
                 }}
             >
                 {copies.map((tech, i) => {
-                    const isHovered = hoveredIndex === i;
+                    // On touch devices (noHover) always show colored; on desktop use hover state
+                    const active = noHover || hoveredIndex === i;
                     return (
                         <div
                             key={`${tech.name}-${i}`}
@@ -96,16 +106,16 @@ function CarouselRow({ icons, reverse = false, speed = 40, cardSize = 132, iconS
                             style={{
                                 width: cardSize,
                                 height: cardSize,
-                                borderColor: isHovered
+                                borderColor: active
                                     ? `${tech.color}55`
                                     : "rgba(255,255,255,0.07)",
-                                background: isHovered
+                                background: active
                                     ? `radial-gradient(circle at 50% 0%, ${tech.color}22 0%, rgba(255,255,255,0.03) 100%)`
                                     : "rgba(255,255,255,0.025)",
-                                transform: isHovered
+                                transform: active && !noHover
                                     ? "translateY(-4px) scale(1.06)"
                                     : "translateY(0) scale(1)",
-                                boxShadow: isHovered
+                                boxShadow: active
                                     ? `0 8px 28px ${tech.color}35`
                                     : "none",
                             }}
@@ -116,7 +126,7 @@ function CarouselRow({ icons, reverse = false, speed = 40, cardSize = 132, iconS
                                     width: iconSize,
                                     height: iconSize,
                                     transition: "filter 0.3s ease",
-                                    filter: isHovered
+                                    filter: active
                                         ? "grayscale(0) brightness(1)"
                                         : "grayscale(1) brightness(0.55)",
                                 }}
@@ -132,7 +142,7 @@ function CarouselRow({ icons, reverse = false, speed = 40, cardSize = 132, iconS
                             {/* Label */}
                             <span
                                 className="text-[10px] font-semibold leading-tight px-1 transition-colors duration-300"
-                                style={{ color: isHovered ? "#E5E7EB" : "#374151" }}
+                                style={{ color: active ? "#E5E7EB" : "#374151" }}
                             >
                                 {tech.name}
                             </span>
@@ -150,11 +160,21 @@ function CarouselRow({ icons, reverse = false, speed = 40, cardSize = 132, iconS
 export default function TechCarousel() {
     const { isMobile } = useWindowSize();
     const [mounted, setMounted] = useState(false);
+    // true when the device has no hover capability (phones / tablets without mouse)
+    const [noHover, setNoHover] = useState(false);
 
     // Wait for the first client render so useWindowSize knows the real viewport.
     // Without this, isMobile starts as false, causing the second row to flash
     // briefly on mobile before disappearing.
-    useEffect(() => { setMounted(true); }, []);
+    useEffect(() => {
+        setMounted(true);
+        // Detect touch-only devices: (hover: none) means no pointer that can hover
+        const mq = window.matchMedia("(hover: none)");
+        setNoHover(mq.matches);
+        const handler = (e: MediaQueryListEvent) => setNoHover(e.matches);
+        mq.addEventListener("change", handler);
+        return () => mq.removeEventListener("change", handler);
+    }, []);
 
     const row2 = [...techIcons].reverse();
 
@@ -175,10 +195,10 @@ export default function TechCarousel() {
 
     return (
         <div className="flex flex-col gap-3">
-            <CarouselRow icons={techIcons} speed={speed1} cardSize={cardSize} iconSize={iconSize} />
+            <CarouselRow icons={techIcons} speed={speed1} cardSize={cardSize} iconSize={iconSize} noHover={noHover} />
             {/* Only render the second row on tablet/desktop */}
             {!isMobile && (
-                <CarouselRow icons={row2} reverse speed={speed2} cardSize={cardSize} iconSize={iconSize} />
+                <CarouselRow icons={row2} reverse speed={speed2} cardSize={cardSize} iconSize={iconSize} noHover={noHover} />
             )}
         </div>
     );
