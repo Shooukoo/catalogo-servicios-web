@@ -13,12 +13,12 @@ export interface TechIcon {
     icon: string;
 }
 
-// Native <img> tags don't inherit Next.js basePath automatically.
-// NEXT_PUBLIC_ASSET_URL should be set to the absolute URL of this
-// Vercel deployment (e.g. https://catalogo-servicios-web.vercel.app)
-// so SVGs load correctly both through the /catalogo proxy and directly.
-// Falls back to "/catalogo" (= basePath) when running locally.
-const ASSET = (process.env.NEXT_PUBLIC_ASSET_URL ?? "/catalogo").replace(/\/$/, "");
+// With basePath="/catalogo", Next.js serves /public files at /catalogo/<file>
+// on the app's own domain. So NEXT_PUBLIC_ASSET_URL must include /catalogo:
+//   e.g. https://catalogo-servicios-web.vercel.app/catalogo
+// When empty, falls back to "" so <img src="/icons/..."> resolves via the
+// /catalogo proxy rewrite on the main domain (uningenieromas.vercel.app).
+const ASSET = (process.env.NEXT_PUBLIC_ASSET_URL ?? "").replace(/\/$/, "");
 
 export const techIcons: TechIcon[] = [
     // ── Web basics ──────────────────────────────
