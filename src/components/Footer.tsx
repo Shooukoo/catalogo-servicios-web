@@ -96,7 +96,7 @@ export default function Footer() {
                     className="border-t pt-6 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-gray-600"
                     style={{ borderColor: "var(--border)" }}
                 >
-                    <span>© {year} Kevin Mora. Todos los derechos reservados.</span>
+                    <span>© {year} Un Ingeniero más. Todos los derechos reservados.</span>
                     <span style={{ color: "var(--accent)", opacity: 0.5 }}>
                         uningenieromás.com
                     </span>
