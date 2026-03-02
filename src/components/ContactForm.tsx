@@ -10,6 +10,14 @@ import { cn } from "@/lib/utils";
 import { db } from "@/lib/firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
+const PROJECT_TYPES = [
+    { value: "", label: "Selecciona el tipo de proyecto" },
+    { value: "landing", label: "🌐  Landing Page / Sitio Web" },
+    { value: "webapp", label: "⚙️  Sistema Web / App" },
+    { value: "n8n", label: "⚡  Automatización n8n" },
+    { value: "otro", label: "💬  Otro / Consultoría" },
+] as const;
+
 const contactSchema = z.object({
     name: z
         .string()
@@ -20,6 +28,9 @@ const contactSchema = z.object({
         .min(7, "Ingresa un número de WhatsApp válido")
         .max(20, "Número demasiado largo")
         .regex(/^[0-9+\s\-()]+$/, "Solo números y caracteres válidos (+, -, espacios)"),
+    projectType: z
+        .string()
+        .min(1, "Por favor selecciona un tipo de proyecto"),
     subject: z
         .string()
         .min(4, "El asunto debe tener al menos 4 caracteres")
@@ -76,7 +87,7 @@ export default function ContactForm() {
     const onSubmit = async (data: ContactFormData) => {
         setSubmitState("loading");
         try {
-            await addDoc(collection(db, "portfolio_contacts"), {
+            await addDoc(collection(db, "leads_proyectos"), {
                 ...data,
                 createdAt: serverTimestamp(),
             });
@@ -162,6 +173,30 @@ export default function ContactForm() {
                     />
                 </FormField>
             </div>
+
+            <FormField label="Tipo de Proyecto" id="projectType" error={errors.projectType?.message}>
+                <select
+                    id="projectType"
+                    className={cn(
+                        inputClass,
+                        "cursor-pointer appearance-none bg-no-repeat",
+                        errors.projectType && "border-red-500/50 focus:ring-red-500/20"
+                    )}
+                    style={{
+                        backgroundImage:
+                            `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E")`,
+                        backgroundPosition: "right 14px center",
+                        paddingRight: "2.5rem",
+                    }}
+                    {...register("projectType")}
+                >
+                    {PROJECT_TYPES.map(({ value, label }) => (
+                        <option key={value} value={value} style={{ background: "#111113", color: value ? "#e5e7eb" : "#6b7280" }}>
+                            {label}
+                        </option>
+                    ))}
+                </select>
+            </FormField>
 
             <FormField label="Asunto" id="subject" error={errors.subject?.message}>
                 <input
