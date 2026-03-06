@@ -8,8 +8,8 @@ const outfit = localFont({
   display: "swap",
 });
 
-// The portfolio lives at /catalogo on the main domain (served via rewrite)
-const BASE_URL = "https://uningenieromas.vercel.app/catalogo";
+// The portfolio lives at /portafolio on the main domain (served via rewrite)
+const BASE_URL = "https://uningenieromas.vercel.app/portafolio";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),

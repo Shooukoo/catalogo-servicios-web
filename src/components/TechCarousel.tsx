@@ -14,11 +14,11 @@ export interface TechIcon {
     icon: string;
 }
 
-// With basePath="/catalogo", Next.js serves /public files at /catalogo/<file>.
+// With basePath="/portafolio", Next.js serves /public files at /portafolio/<file>.
 // NEXT_PUBLIC_ASSET_URL must include the basePath suffix:
-//   Production → https://catalogo-servicios-web.vercel.app/catalogo
-//   Local dev  → leave empty (falls back to "/catalogo" here)
-const ASSET = (process.env.NEXT_PUBLIC_ASSET_URL ?? "/catalogo").replace(/\/$/, "");
+//   Production → https://catalogo-servicios-web.vercel.app/portafolio
+//   Local dev  → leave empty (falls back to "/portafolio" here)
+const ASSET = (process.env.NEXT_PUBLIC_ASSET_URL ?? "/portafolio").replace(/\/$/, "");
 
 export const techIcons: TechIcon[] = [
     // ── Web basics ──────────────────────────────
