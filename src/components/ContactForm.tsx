@@ -85,6 +85,18 @@ export default function ContactForm() {
                 setSubmitState("idle");
                 reset();
             }, 4000);
+
+            // Notificación por correo (no bloquea al usuario si falla)
+            fetch("/api/send-email", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    name: data.name,
+                    whatsapp: data.whatsapp,
+                    subject: data.subject,
+                    message: data.message,
+                }),
+            }).catch((e) => console.warn("[email] No se pudo enviar aviso:", e));
         } catch (err) {
             console.error("Error saving contact:", err);
             setSubmitState("error");
