@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
+    { label: "Sobre mí", href: "#sobre-mi" },
     { label: "Proyectos", href: "#proyectos" },
     { label: "Stack", href: "#stack" },
     { label: "Servicios", href: "#servicios" },
@@ -62,24 +63,34 @@ export default function Navbar() {
                     ))}
                 </ul>
 
-                {/* CTA — desktop */}
-                <a
-                    href="#contacto"
-                    className="hidden md:inline-flex items-center gap-2 px-4 py-2 min-h-[44px] text-sm font-semibold rounded-lg border transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
-                    style={{
-                        borderColor: "var(--accent)",
-                        color: "var(--accent)",
-                        background: "transparent",
-                    }}
-                    onMouseEnter={(e) => {
-                        (e.currentTarget as HTMLElement).style.background = "var(--accent-glow)";
-                    }}
-                    onMouseLeave={(e) => {
-                        (e.currentTarget as HTMLElement).style.background = "transparent";
-                    }}
-                >
-                    Contrátame
-                </a>
+                {/* CTAs — desktop */}
+                <div className="hidden md:flex items-center gap-2">
+                    <a
+                        href="/cv-santiago-mora.pdf"
+                        download
+                        className="inline-flex items-center gap-1.5 px-3 py-2 min-h-[44px] text-sm font-medium rounded-lg text-gray-400 hover:text-white border border-white/10 hover:border-white/20 transition-all duration-200"
+                        style={{ background: "rgba(255,255,255,0.03)" }}
+                    >
+                        CV
+                    </a>
+                    <a
+                        href="#contacto"
+                        className="inline-flex items-center gap-2 px-4 py-2 min-h-[44px] text-sm font-semibold rounded-lg border transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
+                        style={{
+                            borderColor: "var(--accent)",
+                            color: "var(--accent)",
+                            background: "transparent",
+                        }}
+                        onMouseEnter={(e) => {
+                            (e.currentTarget as HTMLElement).style.background = "var(--accent-glow)";
+                        }}
+                        onMouseLeave={(e) => {
+                            (e.currentTarget as HTMLElement).style.background = "transparent";
+                        }}
+                    >
+                        Contrátame
+                    </a>
+                </div>
 
                 {/* Mobile toggle */}
                 <button

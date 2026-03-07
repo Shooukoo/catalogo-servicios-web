@@ -24,10 +24,10 @@ export default function TechStackSection() {
             {/* ── Tech stack header ── */}
             <div className="max-w-6xl mx-auto relative z-10 px-6">
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 16 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-80px" }}
-                    transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] as const }}
+                    transition={{ duration: 0.5, ease: "easeOut" as const }}
                     className="mb-8 md:mb-12 text-center"
                 >
                     <span
@@ -68,10 +68,10 @@ export default function TechStackSection() {
             {/* ── Concepts header ── */}
             <div className="max-w-6xl mx-auto relative z-10 px-6 mt-20">
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 16 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-60px" }}
-                    transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] as const }}
+                    transition={{ duration: 0.5, ease: "easeOut" as const }}
                     className="mb-14 text-center"
                 >
                     <span

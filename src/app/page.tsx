@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/sections/HeroSection";
+import AboutSection from "@/components/sections/AboutSection";
 import ServicesSection from "@/components/sections/ServicesSection";
 import ProjectsSection from "@/components/sections/ProjectsSection";
 import TechStackSection from "@/components/sections/TechStackSection";
@@ -12,6 +13,7 @@ export default function HomePage() {
       <Navbar />
       <main id="main-content" tabIndex={-1} className="overflow-x-hidden">
         <HeroSection />
+        <AboutSection />
         <ProjectsSection />
         <TechStackSection />
         <ServicesSection />

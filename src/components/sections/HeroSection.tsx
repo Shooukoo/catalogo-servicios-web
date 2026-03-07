@@ -131,11 +131,18 @@ export default function HeroSection() {
                         Ver proyectos
                     </a>
                     <a
-                        href="#contacto"
+                        href="/cv-santiago-mora.pdf"
+                        download
                         className="inline-flex items-center gap-2 px-7 py-3.5 min-h-[44px] rounded-xl text-sm font-bold text-gray-300 border border-white/10 hover:border-white/20 hover:text-white transition-all duration-200 hover:-translate-y-1"
                         style={{ background: "rgba(255,255,255,0.03)" }}
                     >
-                        Conversemos
+                        Descargar CV
+                    </a>
+                    <a
+                        href="#contacto"
+                        className="inline-flex items-center gap-2 px-7 py-3.5 min-h-[44px] rounded-xl text-sm font-bold text-gray-500 hover:text-gray-300 transition-all duration-200"
+                    >
+                        Conversemos →
                     </a>
                 </motion.div>
 

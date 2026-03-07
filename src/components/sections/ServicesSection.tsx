@@ -79,10 +79,10 @@ export default function ServicesSection() {
             <div className="max-w-6xl mx-auto relative z-10">
                 {/* Header */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 16 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-80px" }}
-                    transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] as const }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}
                     className="mb-8 md:mb-14 text-center"
                 >
                     <span
@@ -114,10 +114,10 @@ export default function ServicesSection() {
                     {services.map((svc, i) => (
                         <motion.div
                             key={svc.name}
-                            initial={{ opacity: 0, y: 32 }}
+                            initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, amount: 0.1 }}
-                            transition={{ duration: 0.55, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] as const }}
+                            transition={{ duration: 0.5, delay: i * 0.1, ease: "easeOut" }}
                             className="relative flex flex-col rounded-3xl border overflow-hidden transition-transform duration-300 hover:-translate-y-1"
                             style={{
                                 borderColor: svc.borderColor,

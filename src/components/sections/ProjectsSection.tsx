@@ -14,10 +14,10 @@ export default function ProjectsSection() {
             <div className="max-w-6xl mx-auto">
                 {/* Section header */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 16 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-80px" }}
-                    transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}
                     className="mb-8 md:mb-12 text-center"
                 >
                     <span

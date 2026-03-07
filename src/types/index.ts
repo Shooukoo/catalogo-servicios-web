@@ -11,6 +11,7 @@ export interface Project {
   badge?: ProjectBadge;
   featured?: boolean;
   size?: "large" | "medium" | "small";
+  roles?: string[];
 }
 
 export type ProjectBadge = {

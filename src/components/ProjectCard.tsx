@@ -24,17 +24,17 @@ const sizeClasses: Record<string, string> = {
 };
 
 export default function ProjectCard({ project, index }: ProjectCardProps) {
-    const isAI = project.id === "signlanguage";
+    const isAI = project.id === "zarzamora";
 
     return (
         <motion.article
-            initial={{ opacity: 0, y: 32 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{
-                duration: 0.55,
+                duration: 0.5,
                 delay: index * 0.08,
-                ease: [0.16, 1, 0.3, 1],
+                ease: "easeOut",
             }}
             whileHover={{ y: -4, transition: { duration: 0.2 } }}
             className={cn(
@@ -153,6 +153,25 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
                     </li>
                 ))}
             </ul>
+
+            {/* Roles performed */}
+            {project.roles && project.roles.length > 0 && (
+                <div className="relative z-10 flex flex-wrap gap-1.5" aria-label="Roles desempeñados">
+                    {project.roles.map((role) => (
+                        <span
+                            key={role}
+                            className="px-2 py-0.5 text-xs rounded-full border font-medium"
+                            style={{
+                                borderColor: "var(--accent)",
+                                color: "var(--accent)",
+                                background: "var(--accent-glow)",
+                            }}
+                        >
+                            {role}
+                        </span>
+                    ))}
+                </div>
+            )}
 
             {/* Tech Stack pills */}
             <div
