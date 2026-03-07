@@ -123,64 +123,77 @@ export default function AboutSection() {
                     viewport={{ once: true, margin: "-60px" }}
                     className="grid grid-cols-1 lg:grid-cols-5 gap-8"
                 >
-                    {/* ── Left: Photo + soft skills ── */}
+                    {/* ── Left: Full-height photo card ── */}
                     <motion.div
                         variants={itemVariants}
-                        className="lg:col-span-2 flex flex-col gap-6"
+                        className="lg:col-span-2"
                     >
-                        {/* Profile photo */}
+                        {/* Photo card — fills the full column height */}
                         <div
-                            className="relative mx-auto lg:mx-0 w-48 h-48 md:w-56 md:h-56 rounded-2xl overflow-hidden border-2 shrink-0"
-                            style={{ borderColor: "var(--accent)" }}
+                            className="relative w-full rounded-2xl overflow-hidden border border-white/10"
+                            style={{
+                                minHeight: "420px",
+                                height: "100%",
+                                borderColor: "rgba(168,85,247,0.3)",
+                            }}
                         >
-                            {/* Fallback placeholder — shown only when no image loads */}
+                            {/* Fallback placeholder */}
                             <div
                                 aria-hidden="true"
-                                className="absolute inset-0 z-0 flex flex-col items-center justify-center text-center p-4"
+                                className="absolute inset-0 z-0 flex flex-col items-center justify-center"
                                 style={{
                                     background:
-                                        "linear-gradient(135deg, rgba(168,85,247,0.3) 0%, rgba(124,58,237,0.3) 100%)",
+                                        "linear-gradient(160deg, rgba(168,85,247,0.25) 0%, rgba(124,58,237,0.15) 100%)",
                                 }}
                             >
-                                <span className="text-5xl font-black text-white/80">SM</span>
-                                <span className="text-xs text-white/50 mt-1">Añade tu foto</span>
+                                <span className="text-7xl font-black text-white/20">SM</span>
                             </div>
-                            {/* Actual photo — explicit basePath prefix, same pattern as TechCarousel icons */}
+
+                            {/* Photo */}
                             {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img
                                 src={`${BASE}/profile.jpg`}
                                 alt="Santiago Mora Nuñez — Foto de perfil"
-                                className="absolute inset-0 z-10 w-full h-full object-cover"
+                                className="absolute inset-0 z-10 w-full h-full object-cover object-center"
                             />
-                        </div>
 
-                        {/* Soft skills */}
-                        <div
-                            className="p-5 rounded-2xl border border-white/8 card-glass"
-                        >
-                            <h3 className="text-sm font-bold text-white mb-4 flex items-center gap-2">
-                                <span
-                                    className="w-1.5 h-4 rounded-full"
-                                    style={{ background: "var(--accent)" }}
-                                    aria-hidden="true"
-                                />
-                                Habilidades blandas
-                            </h3>
-                            <div className="flex flex-wrap gap-2">
-                                {softSkills.map((label) => (
-                                    <span
-                                        key={label}
-                                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium text-gray-300 border border-white/8"
-                                        style={{ background: "rgba(255,255,255,0.03)" }}
-                                    >
+                            {/* Bottom gradient overlay */}
+                            <div
+                                aria-hidden="true"
+                                className="absolute bottom-0 left-0 right-0 z-20 h-48"
+                                style={{
+                                    background:
+                                        "linear-gradient(to top, rgba(9,9,11,0.95) 0%, rgba(9,9,11,0.6) 50%, transparent 100%)",
+                                }}
+                            />
+
+                            {/* Name + role + soft skills overlay */}
+                            <div className="absolute bottom-0 left-0 right-0 z-30 p-6">
+                                <p className="text-2xl font-black text-white leading-tight">
+                                    Santiago Mora
+                                </p>
+                                <p
+                                    className="text-sm font-medium mt-0.5 mb-4"
+                                    style={{ color: "var(--accent)" }}
+                                >
+                                    Ingeniero en Sistemas
+                                </p>
+                                <div className="flex flex-wrap gap-1.5">
+                                    {softSkills.map((label) => (
                                         <span
-                                            aria-hidden="true"
-                                            className="w-1.5 h-1.5 rounded-full shrink-0"
-                                            style={{ background: "var(--accent)" }}
-                                        />
-                                        {label}
-                                    </span>
-                                ))}
+                                            key={label}
+                                            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-medium text-gray-300 border border-white/10"
+                                            style={{ background: "rgba(0,0,0,0.45)", backdropFilter: "blur(8px)" }}
+                                        >
+                                            <span
+                                                aria-hidden="true"
+                                                className="w-1 h-1 rounded-full shrink-0"
+                                                style={{ background: "var(--accent)" }}
+                                            />
+                                            {label}
+                                        </span>
+                                    ))}
+                                </div>
                             </div>
                         </div>
                     </motion.div>
