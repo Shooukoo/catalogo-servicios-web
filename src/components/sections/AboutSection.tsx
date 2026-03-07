@@ -130,17 +130,10 @@ export default function AboutSection() {
                             className="relative mx-auto lg:mx-0 w-48 h-48 md:w-56 md:h-56 rounded-2xl overflow-hidden border-2 shrink-0"
                             style={{ borderColor: "var(--accent)" }}
                         >
-                            <Image
-                                src="/profile.jpg"
-                                alt="Santiago Mora Nuñez — Foto de perfil"
-                                fill
-                                className="object-cover"
-                                priority
-                            />
-                            {/* Fallback gradient when no image */}
+                            {/* Fallback placeholder — shown only when no image loads */}
                             <div
                                 aria-hidden="true"
-                                className="absolute inset-0 flex flex-col items-center justify-center text-center p-4"
+                                className="absolute inset-0 z-0 flex flex-col items-center justify-center text-center p-4"
                                 style={{
                                     background:
                                         "linear-gradient(135deg, rgba(168,85,247,0.3) 0%, rgba(124,58,237,0.3) 100%)",
@@ -149,6 +142,14 @@ export default function AboutSection() {
                                 <span className="text-5xl font-black text-white/80">SM</span>
                                 <span className="text-xs text-white/50 mt-1">Añade tu foto</span>
                             </div>
+                            {/* Actual photo — sits on top of the fallback */}
+                            <Image
+                                src="/profile.jpg"
+                                alt="Santiago Mora Nuñez — Foto de perfil"
+                                fill
+                                className="object-cover relative z-10"
+                                priority
+                            />
                         </div>
 
                         {/* Soft skills */}

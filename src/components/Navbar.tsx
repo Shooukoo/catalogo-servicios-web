@@ -5,6 +5,9 @@ import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+// With basePath="/portafolio", plain <a href> files don't get the prefix automatically.
+const BASE = (process.env.NEXT_PUBLIC_ASSET_URL ?? "/portafolio").replace(/\/$/, "");
+
 const NAV_LINKS = [
     { label: "Sobre mí", href: "#sobre-mi" },
     { label: "Proyectos", href: "#proyectos" },
@@ -66,7 +69,7 @@ export default function Navbar() {
                 {/* CTAs — desktop */}
                 <div className="hidden md:flex items-center gap-2">
                     <a
-                        href="/cv-santiago-mora.pdf"
+                        href={`${BASE}/cv-santiago-mora.pdf`}
                         download
                         className="inline-flex items-center gap-1.5 px-3 py-2 min-h-[44px] text-sm font-medium rounded-lg text-gray-400 hover:text-white border border-white/10 hover:border-white/20 transition-all duration-200"
                         style={{ background: "rgba(255,255,255,0.03)" }}

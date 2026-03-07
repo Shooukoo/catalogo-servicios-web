@@ -3,6 +3,10 @@
 import { motion } from "framer-motion";
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 
+// With basePath="/portafolio", plain <a href> don't get the prefix automatically.
+// This constant mirrors the pattern used in TechCarousel for consistency.
+const BASE = (process.env.NEXT_PUBLIC_ASSET_URL ?? "/portafolio").replace(/\/$/, "");
+
 const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -131,7 +135,7 @@ export default function HeroSection() {
                         Ver proyectos
                     </a>
                     <a
-                        href="/cv-santiago-mora.pdf"
+                        href={`${BASE}/cv-santiago-mora.pdf`}
                         download
                         className="inline-flex items-center gap-2 px-7 py-3.5 min-h-[44px] rounded-xl text-sm font-bold text-gray-300 border border-white/10 hover:border-white/20 hover:text-white transition-all duration-200 hover:-translate-y-1"
                         style={{ background: "rgba(255,255,255,0.03)" }}
