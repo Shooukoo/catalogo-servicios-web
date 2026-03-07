@@ -1,8 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { GraduationCap, Briefcase, Lightbulb } from "lucide-react";
+
+// With basePath="/portafolio", Next.js <Image> may not apply the prefix correctly
+// when this app is served as a subpath proxy on Vercel. Use an explicit BASE constant.
+const BASE = (process.env.NEXT_PUBLIC_ASSET_URL ?? "/portafolio").replace(/\/$/, "");
 
 const softSkills = [
     "Comunicación efectiva",
@@ -142,13 +145,12 @@ export default function AboutSection() {
                                 <span className="text-5xl font-black text-white/80">SM</span>
                                 <span className="text-xs text-white/50 mt-1">Añade tu foto</span>
                             </div>
-                            {/* Actual photo — sits on top of the fallback */}
-                            <Image
-                                src="/profile.jpg"
+                            {/* Actual photo — explicit basePath prefix, same pattern as TechCarousel icons */}
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                                src={`${BASE}/profile.jpg`}
                                 alt="Santiago Mora Nuñez — Foto de perfil"
-                                fill
-                                className="object-cover relative z-10"
-                                priority
+                                className="absolute inset-0 z-10 w-full h-full object-cover"
                             />
                         </div>
 
