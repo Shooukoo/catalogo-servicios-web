@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowUpRight, Github } from "lucide-react";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Project } from "@/types";
 
@@ -38,23 +39,22 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             }}
             whileHover={{ y: -4, transition: { duration: 0.2 } }}
             className={cn(
-                "group relative flex flex-col gap-4 p-6 rounded-2xl border overflow-hidden transition-all duration-300",
+                "group relative flex flex-col gap-4 p-6 rounded-2xl border overflow-hidden transition-all duration-300 cursor-pointer",
                 "hover:border-white/15 hover:shadow-2xl",
                 sizeClasses[project.size ?? "medium"],
                 isAI
                     ? "border-orange-500/20 bg-gradient-to-br from-orange-950/20 via-[#111113] to-[#111113]"
                     : "border-white/8 bg-[var(--bg-card)]"
             )}
-            style={
-                isAI
-                    ? {}
-                    : {
-                        boxShadow:
-                            "0 0 0 0 transparent",
-                    }
-            }
             aria-label={`Proyecto: ${project.title}`}
         >
+            {/* Card link overlay — covers the whole card at z-10 */}
+            <Link
+                href={`/proyectos/${project.id}/`}
+                className="absolute inset-0 z-10 rounded-2xl"
+                aria-label={`Ver detalle de ${project.title}`}
+            />
+
             {/* AI Special glow */}
             {isAI && (
                 <div
@@ -79,7 +79,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             />
 
             {/* Header */}
-            <div className="flex items-start justify-between gap-3 relative z-10">
+            <div className="flex items-start justify-between gap-3 relative z-20">
                 <div className="flex-1 min-w-0">
                     {project.badge && (
                         <span
@@ -102,8 +102,8 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
                     </p>
                 </div>
 
-                {/* Action icons */}
-                <div className="flex items-center gap-2 shrink-0">
+                {/* Action icons — z-20 so they sit above the link overlay */}
+                <div className="flex items-center gap-2 shrink-0 relative z-20">
                     {project.github && (
                         <a
                             href={project.github}
@@ -111,17 +111,19 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
                             rel="noopener noreferrer"
                             aria-label={`Ver código de ${project.title} en GitHub`}
                             className="p-2 rounded-lg border border-white/8 text-gray-500 hover:text-white hover:border-white/20 transition-all"
+                            onClick={(e) => e.stopPropagation()}
                         >
                             <Github size={15} />
                         </a>
                     )}
-                    {project.href && (
+                    {project.href && project.href !== "#" && (
                         <a
                             href={project.href}
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label={`Ver proyecto ${project.title}`}
                             className="p-2 rounded-lg text-gray-500 hover:text-white transition-all border border-white/8 hover:border-white/20"
+                            onClick={(e) => e.stopPropagation()}
                         >
                             <ArrowUpRight size={15} />
                         </a>

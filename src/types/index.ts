@@ -1,4 +1,15 @@
 // ─── Project Types ────────────────────────────────────────────
+export interface ProjectArchitectureLayer {
+  name: string;
+  description: string;
+  tech: string[];
+}
+
+export interface ProjectTechByCategory {
+  category: string;
+  items: string[];
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -12,6 +23,11 @@ export interface Project {
   featured?: boolean;
   size?: "large" | "medium" | "small";
   roles?: string[];
+  // Detail page fields
+  status?: "En desarrollo activo" | "Completado" | "Demo disponible" | "En pausa";
+  longDescription?: string[];
+  architectureLayers?: ProjectArchitectureLayer[];
+  techByCategory?: ProjectTechByCategory[];
 }
 
 export type ProjectBadge = {
