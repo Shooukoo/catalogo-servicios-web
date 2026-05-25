@@ -48,12 +48,40 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             )}
             aria-label={`Proyecto: ${project.title}`}
         >
-            {/* Card link overlay — covers the whole card at z-10 */}
+            {/* Card link overlay — z-10, transparent, covers the whole card */}
             <Link
                 href={`/proyectos/${project.id}/`}
                 className="absolute inset-0 z-10 rounded-2xl"
                 aria-label={`Ver detalle de ${project.title}`}
             />
+
+            {/* Icon buttons — absolutely positioned above the link overlay (z-20) */}
+            {(project.github || (project.href && project.href !== "#")) && (
+                <div className="absolute top-6 right-6 z-20 flex items-center gap-2">
+                    {project.github && (
+                        <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`Ver código de ${project.title} en GitHub`}
+                            className="p-2 rounded-lg border border-white/8 text-gray-500 hover:text-white hover:border-white/20 transition-all"
+                        >
+                            <Github size={15} />
+                        </a>
+                    )}
+                    {project.href && project.href !== "#" && (
+                        <a
+                            href={project.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`Ver proyecto ${project.title}`}
+                            className="p-2 rounded-lg text-gray-500 hover:text-white transition-all border border-white/8 hover:border-white/20"
+                        >
+                            <ArrowUpRight size={15} />
+                        </a>
+                    )}
+                </div>
+            )}
 
             {/* AI Special glow */}
             {isAI && (
@@ -78,74 +106,41 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
                 }}
             />
 
-            {/* Header */}
-            <div className="flex items-start justify-between gap-3 relative z-20">
-                <div className="flex-1 min-w-0">
-                    {project.badge && (
-                        <span
-                            className={cn(
-                                "inline-block mb-3 px-2.5 py-1 text-xs font-bold rounded-full border uppercase tracking-wider",
-                                badgeColors[project.badge.variant]
-                            )}
-                        >
-                            {project.badge.label}
-                        </span>
+            {/* All card content — no z-index, so the Link overlay (z-10) sits on top */}
+            {/* Badge */}
+            {project.badge && (
+                <span
+                    className={cn(
+                        "inline-block w-fit px-2.5 py-1 text-xs font-bold rounded-full border uppercase tracking-wider",
+                        badgeColors[project.badge.variant]
                     )}
-                    <h3 className="text-lg font-bold text-white truncate group-hover:text-gray-100 transition-colors">
-                        {project.title}
-                    </h3>
-                    <p
-                        className="text-sm mt-0.5 truncate"
-                        style={{ color: "var(--accent)" }}
-                    >
-                        {project.tagline}
-                    </p>
-                </div>
+                >
+                    {project.badge.label}
+                </span>
+            )}
 
-                {/* Action icons — z-20 so they sit above the link overlay */}
-                <div className="flex items-center gap-2 shrink-0 relative z-20">
-                    {project.github && (
-                        <a
-                            href={project.github}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={`Ver código de ${project.title} en GitHub`}
-                            className="p-2 rounded-lg border border-white/8 text-gray-500 hover:text-white hover:border-white/20 transition-all"
-                            onClick={(e) => e.stopPropagation()}
-                        >
-                            <Github size={15} />
-                        </a>
-                    )}
-                    {project.href && project.href !== "#" && (
-                        <a
-                            href={project.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={`Ver proyecto ${project.title}`}
-                            className="p-2 rounded-lg text-gray-500 hover:text-white transition-all border border-white/8 hover:border-white/20"
-                            onClick={(e) => e.stopPropagation()}
-                        >
-                            <ArrowUpRight size={15} />
-                        </a>
-                    )}
-                </div>
+            {/* Title and tagline */}
+            <div className="flex-1 min-w-0 pr-16">
+                <h3 className="text-lg font-bold text-white truncate group-hover:text-gray-100 transition-colors">
+                    {project.title}
+                </h3>
+                <p
+                    className="text-sm mt-0.5 truncate"
+                    style={{ color: "var(--accent)" }}
+                >
+                    {project.tagline}
+                </p>
             </div>
 
             {/* Description */}
-            <p className="text-sm text-gray-400 leading-relaxed relative z-10 line-clamp-3">
+            <p className="text-sm text-gray-400 leading-relaxed line-clamp-3">
                 {project.description}
             </p>
 
             {/* Highlights */}
-            <ul
-                className="relative z-10 flex flex-col gap-1.5"
-                aria-label="Características principales"
-            >
+            <ul className="flex flex-col gap-1.5" aria-label="Características principales">
                 {project.highlights.map((h) => (
-                    <li
-                        key={h}
-                        className="flex items-center gap-2 text-xs text-gray-500"
-                    >
+                    <li key={h} className="flex items-center gap-2 text-xs text-gray-500">
                         <span
                             className="w-1 h-1 rounded-full shrink-0"
                             style={{ background: "var(--accent)" }}
@@ -158,7 +153,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
 
             {/* Roles performed */}
             {project.roles && project.roles.length > 0 && (
-                <div className="relative z-10 flex flex-wrap gap-1.5" aria-label="Roles desempeñados">
+                <div className="flex flex-wrap gap-1.5" aria-label="Roles desempeñados">
                     {project.roles.map((role) => (
                         <span
                             key={role}
@@ -177,7 +172,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
 
             {/* Tech Stack pills */}
             <div
-                className="flex flex-wrap gap-2 mt-auto relative z-10 pt-2 border-t border-white/5"
+                className="flex flex-wrap gap-2 mt-auto pt-2 border-t border-white/5"
                 aria-label="Tecnologías usadas"
             >
                 {project.techStack.map((tech) => (
