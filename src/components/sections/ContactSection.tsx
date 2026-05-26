@@ -1,16 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Phone, MapPin, Clock } from "lucide-react";
+import { MapPin, Clock } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
 
 const contactInfo = [
-    {
-        icon: Phone,
-        label: "WhatsApp",
-        value: "+52 353 137 3007",
-        href: "https://wa.me/523531373007",
-    },
     {
         icon: MapPin,
         label: "Ubicación",

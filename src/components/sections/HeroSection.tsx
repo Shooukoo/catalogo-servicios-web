@@ -30,7 +30,7 @@ const itemVariants = {
 const socialLinks = [
     { href: "https://github.com/Shooukoo", icon: Github, label: "GitHub" },
     { href: "https://www.linkedin.com/in/santiago-antonio-mora-nu%C3%B1ez-bb024a3b3", icon: Linkedin, label: "LinkedIn" },
-    { href: "mailto:santiago.amn@hotmail.com", icon: Mail, label: "Email" },
+    { href: "#contacto", icon: Mail, label: "Email" },
 ];
 
 export default function HeroSection() {
