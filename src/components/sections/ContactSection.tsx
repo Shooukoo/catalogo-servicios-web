@@ -124,7 +124,7 @@ export default function ContactSection() {
                                 Respuesta en &lt; 24h
                             </p>
                             <p className="text-xs text-gray-400">
-                                Reviso mi WhatsApp todos los días laborales.
+                                Reviso el formulario todos los días laborales.
                             </p>
                         </div>
                     </motion.div>
